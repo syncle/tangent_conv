@@ -13,7 +13,7 @@ from util.common import *
 import os
 import csv
 import json
-import wget
+# import wget
 
 def get_stanford():
 	class_dict = {"ceiling" : 1, "floor" : 2, "wall" : 3, "beam" : 4, "column" : 5,
@@ -49,9 +49,9 @@ def get_stanford():
 					for entry in entries:
 						if len(entry) < 2:
 							continue
-						
+
 						spl = entry.split()
-						
+
 						if len(spl) != 6:
 							continue
 
@@ -79,7 +79,7 @@ def get_scannet():
 		  	   	  "36" : 19, "39" : 20}
 
 	label_map = {}
-	label_map_file = os.path.join(args.input_folder, "scannet-labels.combined.tsv")
+	label_map_file = os.path.join(args.input_folder, "scannetv2-labels.combined.tsv")
 	with open(label_map_file, 'r') as f:
 		lines = csv.reader(f, delimiter='\t')
 		cnt = 0
@@ -192,7 +192,7 @@ def get_semantic3d():
 	print("done.")
 
 	for key in dl_files:
-		
+
 		points = []
 		colors = []
 		labels = []
@@ -207,7 +207,7 @@ def get_semantic3d():
 				if cnt % 100000 == 0:
 					print(cnt)
 				cnt += 1
-		
+
 		os.mkdir(os.path.join(args.output_folder, key))
 		pcd = PointCloud()
 		pcd.points = Vector3dVector(points)

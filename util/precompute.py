@@ -21,7 +21,7 @@ class param:
 def run_precompute(config):
 	p = param(config)
 	make_dir(p.output_dir)
-
+	
 	for scan_name in list_dir(p.dataset_dir):
 		for rot in range(0, p.num_rotations):
 			cloud_file = os.path.join(p.dataset_dir, scan_name, "scan.pcd")
